@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import { AUTH_REDIRECT_PATH, COOKIE_ACCESS_TOKEN } from "~/api/constants";
+import { COOKIE_ACCESS_TOKEN } from "~/api/constants";
 
 export default function auth(options = {}) {
   const { protect } = options;
@@ -11,7 +11,12 @@ export default function auth(options = {}) {
     const token = cookies.get(COOKIE_ACCESS_TOKEN);
     if (!token) {
       if (protect) {
-        respondWithError(req, res);
+        res.status(401);
+        res.json({
+          error: {
+            message: "You are not authenticated",
+          },
+        });
       } else {
         next();
       }
@@ -23,14 +28,24 @@ export default function auth(options = {}) {
       const payload = jwt.verify(token, process.env.JWT_SECRET);
       id = payload.id;
     } catch {
-      respondWithError(req, res);
+      res.status(401);
+      res.json({
+        error: {
+          message: "You are not authenticated",
+        },
+      });
       return;
     }
 
     if (db) {
       const user = await db("users").where({ id }).first();
       if (!user) {
-        respondWithError(req, res);
+        res.status(401);
+        res.json({
+          error: {
+            message: "You are not authenticated",
+          },
+        });
         return;
       }
 
@@ -39,20 +54,4 @@ export default function auth(options = {}) {
 
     next();
   };
-}
-
-function respondWithError(req, res) {
-  if (req.path.startsWith("/api")) {
-    res.status(401);
-    res.json({
-      error: {
-        message: "You are not authenticated",
-      },
-    });
-  } else {
-    res.writeHead(302, {
-      Location: AUTH_REDIRECT_PATH,
-    });
-    res.end();
-  }
 }

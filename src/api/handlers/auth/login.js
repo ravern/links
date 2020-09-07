@@ -29,8 +29,6 @@ export default async function login(req, res) {
   delete user.password;
 
   res.json({
-    data: {
-      user,
-    },
+    data: user,
   });
 }
