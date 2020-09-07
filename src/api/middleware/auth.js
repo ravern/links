@@ -2,13 +2,19 @@ import jwt from "jsonwebtoken";
 
 import { AUTH_REDIRECT_PATH, COOKIE_ACCESS_TOKEN } from "~/api/constants";
 
-export default function auth() {
+export default function auth(options = {}) {
+  const { protect } = options;
+
   return async (req, res, next) => {
     const { cookies, db } = req.state;
 
     const token = cookies.get(COOKIE_ACCESS_TOKEN);
     if (!token) {
-      respondWithError(req, res);
+      if (protect) {
+        respondWithError(req, res);
+      } else {
+        next();
+      }
       return;
     }
 

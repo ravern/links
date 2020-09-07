@@ -1,8 +1,5 @@
 import Joi from "@hapi/joi";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-
-import { COOKIE_ACCESS_TOKEN } from "~/api/constants";
 
 const schema = Joi.object({
   username: Joi.string().min(4).max(20).required().messages({
@@ -23,8 +20,8 @@ const schema = Joi.object({
   }),
 });
 
-export default async function register(req, res) {
-  const { db, cookies } = req.state;
+export default async function create(req, res) {
+  const { db } = req.state;
   const { email, username, password } = req.body;
 
   const { error } = schema.validate(req.body);
@@ -70,16 +67,13 @@ export default async function register(req, res) {
         return;
       }
     }
-  }
 
-  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-  cookies.set(COOKIE_ACCESS_TOKEN, token);
+    throw error;
+  }
 
   delete user.password;
 
   res.json({
-    data: {
-      user,
-    },
+    data: user,
   });
 }
