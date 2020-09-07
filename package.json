@@ -2,5 +2,32 @@
   "name": "links",
   "private": true,
   "repository": "https://github.com/ravern/links.git",
-  "author": "Ravern Koh <ravern@ravern.dev>"
+  "author": "Ravern Koh <ravernkoh@gmakl.com>",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "cookies": "^0.8.0",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.5",
+    "next": "^9.5.3",
+    "next-connect": "^0.9.0",
+    "pg": "^8.3.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint": "^7.3.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "prettier": "^2.0.5"
+  }
 }
