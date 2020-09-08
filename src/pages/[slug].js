@@ -1,5 +1,5 @@
-import LinkPage from "~/components/pages/Link";
+import GetLinkPage from "~/components/pages/GetLink";
 
-export { getServerSideProps } from "~/components/pages/Link";
+export { getServerSideProps } from "~/components/pages/GetLink";
 
-export default LinkPage;
+export default GetLinkPage;

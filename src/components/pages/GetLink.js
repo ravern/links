@@ -1,6 +1,6 @@
 import fetch from "~/helpers/fetch";
 
-export default function LinkPage() {
+export default function GetLinkPage() {
   return "";
 }
 

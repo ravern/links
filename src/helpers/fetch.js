@@ -13,5 +13,5 @@ export default async function fetch(path, { body, ...options } = {}) {
   if (error) {
     throw new Error(error.message);
   }
-  return { data };
+  return data;
 }
