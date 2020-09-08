@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
-import LogInForm from "./components/LogInForm";
+import LogInForm from "./components/LoginForm";
 
 export default function LogInPage() {
   const router = useRouter();
