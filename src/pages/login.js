@@ -1,3 +1,3 @@
-import LogInPage from "~/components/pages/LogIn";
+import LogInPage from "~/components/pages/Login";
 
 export default LogInPage;
