@@ -34,6 +34,7 @@ export default function CreateLinkForm({ onSuccess }) {
 
   return (
     <Container>
+      <Title>Shorten your link!</Title>
       <InputsContainer>
         <URLInput
           value={values.url}
@@ -59,6 +60,8 @@ const Container = styled.form`
     margin-top: 1.6rem;
   }
 `;
+
+const Title = styled.h1``;
 
 const InputsContainer = styled.div`
   display: flex;

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import connect from "next-connect";
 
+import NavigationBar from "~/components/shared/NavigationBar";
 import auth from "~/middleware/auth";
 
 import CreateLinkForm from "./components/CreateLinkForm";
@@ -10,7 +11,10 @@ export default function IndexPage({ user }) {
 
   return (
     <Container>
-      <CreateLinkForm onSuccess={handleSuccess} />
+      <NavigationBar user={user} />
+      <CenterContainer>
+        <CreateLinkForm onSuccess={handleSuccess} />
+      </CenterContainer>
     </Container>
   );
 }
@@ -25,8 +29,16 @@ export async function getServerSideProps({ req, res }) {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin: auto;
+  max-width: 64ch;
+  height: 100vh;
+`;
+
+const CenterContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 `;
