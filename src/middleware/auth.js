@@ -5,12 +5,14 @@ export default function auth(options = {}) {
   const { protect } = options;
 
   return async (req, res, next) => {
-    const user = await fetch("/users/me", {
-      headers: {
-        cookie: req.headers.cookie,
-      },
-    });
-    if (!user) {
+    let user;
+    try {
+      user = await fetch("/users/me", {
+        headers: {
+          cookie: req.headers.cookie,
+        },
+      });
+    } catch {
       if (protect) {
         res.writeHead(302, {
           Location: AUTH_REDIRECT_PATH,
@@ -20,7 +22,6 @@ export default function auth(options = {}) {
         req.state = { ...req.state, user: null };
         next();
       }
-      return;
     }
 
     req.state = { ...req.state, user };

@@ -6,12 +6,12 @@ import auth from "~/middleware/auth";
 
 import CreateLinkForm from "./components/CreateLinkForm";
 
-export default function IndexPage({ user }) {
+export default function IndexPage() {
   const handleSuccess = () => {};
 
   return (
     <Container>
-      <NavigationBar user={user} />
+      <NavigationBar />
       <CenterContainer>
         <CreateLinkForm onSuccess={handleSuccess} />
       </CenterContainer>
@@ -24,7 +24,7 @@ export async function getServerSideProps({ req, res }) {
 
   const { user } = req.state;
 
-  return { props: { user } };
+  return { props: { user: user ?? null } };
 }
 
 const Container = styled.div`

@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 
 import fetch from "~/helpers/fetch";
 
-export default function useLinksQuery() {
+export default function useLogInMutation() {
   return useMutation(login, {
     throwOnError: true,
   });

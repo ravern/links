@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 import Button from "~/components/core/Button";
 import Input from "~/components/core/Input";
-import useLoginMutation from "~/hooks/api/useLoginMutation";
+import useLoginMutation from "~/hooks/api/useLogInMutation";
 import useForm from "~/hooks/useForm";
 
 export default function LogInForm({ onSuccess }) {

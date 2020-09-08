@@ -9,6 +9,9 @@ import db from "~/api/middleware/db";
 export default connect()
   .use(db())
   .use(cookies())
-  .use(auth())
-  .post(create)
-  .get(all);
+  .post(connect().use(auth()).use(create))
+  .get(
+    connect()
+      .use(auth({ protect: true }))
+      .use(all)
+  );
