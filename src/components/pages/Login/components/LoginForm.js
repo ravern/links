@@ -10,7 +10,6 @@ export default function LogInForm({ onSuccess }) {
 
   const handleSubmit = async (values) => {
     await login(values);
-    onSuccess();
   };
 
   const { values, onChange, onSubmit, error } = useForm({
@@ -19,6 +18,7 @@ export default function LogInForm({ onSuccess }) {
       password: "",
     },
     onSubmit: handleSubmit,
+    onSuccess,
   });
 
   return (

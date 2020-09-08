@@ -1,8 +1,6 @@
 import { useCallback, useState } from "react";
 
-function useForm(props) {
-  const { values: initialValues, onSubmit } = props;
-
+function useForm({ values: initialValues, onSubmit, onSuccess }) {
   const [values, setValues] = useState(initialValues ?? {});
 
   const [error, setError] = useState(null);
@@ -21,8 +19,10 @@ function useForm(props) {
     async (e) => {
       e.preventDefault();
       try {
-        await onSubmit(values);
+        const data = await onSubmit(values);
+        setValues(initialValues);
         setError(null);
+        onSuccess(data);
       } catch (error) {
         setError(error);
       }

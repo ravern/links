@@ -3,8 +3,16 @@ import connect from "next-connect";
 
 import auth from "~/middleware/auth";
 
+import CreateLinkForm from "./components/CreateLinkForm";
+
 export default function IndexPage({ user }) {
-  return <Button>{JSON.stringify(user)}</Button>;
+  const handleSuccess = () => {};
+
+  return (
+    <Container>
+      <CreateLinkForm onSuccess={handleSuccess} />
+    </Container>
+  );
 }
 
 export async function getServerSideProps({ req, res }) {
@@ -15,7 +23,10 @@ export async function getServerSideProps({ req, res }) {
   return { props: { user } };
 }
 
-const Button = styled.button`
-  background-color: red;
-  border: none;
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;

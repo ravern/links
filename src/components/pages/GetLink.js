@@ -7,8 +7,7 @@ export default function GetLinkPage() {
 export async function getServerSideProps({ query: { slug }, res }) {
   let link;
   try {
-    const res = await fetch(`/links/${slug}`);
-    link = res.data;
+    link = await fetch(`/links/${slug}`);
   } catch {
     return { props: {} };
   }

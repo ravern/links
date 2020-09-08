@@ -1,11 +1,9 @@
 import Joi from "@hapi/joi";
 
 const schema = Joi.object({
-  slug: Joi.string().min(6).max(20).messages({
+  slug: Joi.string().min(6).max(20).optional().messages({
     "string.min": "Slug should be more than 6 characters",
     "string.max": "Slug should be under 20 characters",
-    "string.empty": "Slug is required",
-    "any.required": "Slug is required",
   }),
   url: Joi.string().uri().required().messages({
     "string.uri": "Please provide a valid URL",

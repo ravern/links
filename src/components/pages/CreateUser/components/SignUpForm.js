@@ -10,7 +10,6 @@ export default function SignUpForm({ onSuccess }) {
 
   const handleSubmit = async (values) => {
     await createUser(values);
-    onSuccess();
   };
 
   const { values, onChange, onSubmit, error } = useForm({
@@ -20,6 +19,7 @@ export default function SignUpForm({ onSuccess }) {
       password: "",
     },
     onSubmit: handleSubmit,
+    onSuccess,
   });
 
   return (
