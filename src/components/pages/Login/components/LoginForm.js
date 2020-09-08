@@ -2,11 +2,11 @@ import styled from "@emotion/styled";
 
 import Button from "~/components/core/Button";
 import Input from "~/components/core/Input";
-import useLoginMutation from "~/hooks/api/useLogInMutation";
+import useLogInMutation from "~/hooks/api/useLoginMutation";
 import useForm from "~/hooks/useForm";
 
 export default function LogInForm({ onSuccess }) {
-  const [login] = useLoginMutation();
+  const [login] = useLogInMutation();
 
   const handleSubmit = async (values) => {
     await login(values);
