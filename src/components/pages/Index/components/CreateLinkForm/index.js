@@ -34,7 +34,7 @@ export default function CreateLinkForm({ onSuccess }) {
 
   return (
     <Container>
-      <Title>Shorten link here!</Title>
+      <Title>Shorten your link!</Title>
       <InputsContainer>
         <URLInput
           value={values.url}
