@@ -5,7 +5,7 @@ export default function auth(options = {}) {
   const { protect } = options;
 
   return async (req, res, next) => {
-    const { data: user } = await fetch("/users/me", {
+    const user = await fetch("/users/me", {
       headers: {
         cookie: req.headers.cookie,
       },
@@ -17,6 +17,7 @@ export default function auth(options = {}) {
         });
         res.end();
       } else {
+        req.state = { ...req.state, user: null };
         next();
       }
       return;

@@ -1,6 +1,6 @@
+import styled from "@emotion/styled";
 import connect from "next-connect";
 
-import { styled } from "~/helpers/stitches";
 import auth from "~/middleware/auth";
 
 export default function IndexPage({ user }) {
@@ -15,7 +15,7 @@ export async function getServerSideProps({ req, res }) {
   return { props: { user } };
 }
 
-const Button = styled("button", {
-  backgroundColor: "red",
-  border: "none",
-});
+const Button = styled.button`
+  background-color: red;
+  border: none;
+`;
