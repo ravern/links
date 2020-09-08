@@ -2,20 +2,21 @@ import styled from "@emotion/styled";
 
 import Button from "~/components/core/Button";
 import Input from "~/components/core/Input";
-import useLoginMutation from "~/hooks/api/useLoginMutation";
+import useCreateUserMutation from "~/hooks/api/useCreateUserMutation";
 import useForm from "~/hooks/useForm";
 
-export default function LogInForm({ onSuccess }) {
-  const [login] = useLoginMutation();
+export default function SignUpForm({ onSuccess }) {
+  const [createUser] = useCreateUserMutation();
 
   const handleSubmit = async (values) => {
-    await login(values);
+    await createUser(values);
     onSuccess();
   };
 
   const { values, onChange, onSubmit, error } = useForm({
     values: {
-      emailOrUsername: "",
+      email: "",
+      username: "",
       password: "",
     },
     onSubmit: handleSubmit,
@@ -23,11 +24,12 @@ export default function LogInForm({ onSuccess }) {
 
   return (
     <Container>
-      <Title>Log in</Title>
+      <Title>Sign up</Title>
       <InputsContainer>
-        <EmailOrUsernameInput
-          value={values.emailOrUsername}
-          onChange={onChange("emailOrUsername")}
+        <EmailInput value={values.email} onChange={onChange("email")} />
+        <UsernameInput
+          value={values.username}
+          onChange={onChange("username")}
         />
         <PasswordInput
           value={values.password}
@@ -35,7 +37,7 @@ export default function LogInForm({ onSuccess }) {
         />
       </InputsContainer>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
-      <SubmitButton onClick={onSubmit}>Log in</SubmitButton>
+      <SubmitButton onClick={onSubmit}>Sign up</SubmitButton>
     </Container>
   );
 }
@@ -61,10 +63,16 @@ const InputsContainer = styled.div`
   }
 `;
 
-const EmailOrUsernameInput = styled(Input)``;
+const EmailInput = styled(Input)``;
 
-EmailOrUsernameInput.defaultProps = {
-  placeholder: "Email or Username",
+EmailInput.defaultProps = {
+  placeholder: "Email",
+};
+
+const UsernameInput = styled(Input)``;
+
+UsernameInput.defaultProps = {
+  placeholder: "Username",
 };
 
 const PasswordInput = styled(Input)``;

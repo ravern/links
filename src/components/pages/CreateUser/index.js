@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
-import LogInForm from "./components/LogInForm";
+import SignUpForm from "./components/SignUpForm";
 
-export default function LogInPage() {
+export default function CreateUserPage() {
   const router = useRouter();
 
   const handleSuccess = () => {
-    router.push("/");
+    router.push("/login");
   };
 
   return (
     <Container>
-      <LogInForm onSuccess={handleSuccess} />
+      <SignUpForm onSuccess={handleSuccess} />
     </Container>
   );
 }
